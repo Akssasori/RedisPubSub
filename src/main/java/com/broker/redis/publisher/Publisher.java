@@ -1,6 +1,7 @@
 package com.broker.redis.publisher;
 
 import com.broker.redis.dto.ProductDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
@@ -17,7 +18,7 @@ public class Publisher {
     private ChannelTopic topic;
 
     @PostMapping("/publish")
-    public String publish(@RequestBody ProductDTO productDTO) {
+    public String publish(@Valid @RequestBody ProductDTO productDTO) {
         template.convertAndSend(topic.getTopic(), productDTO.toString());
         return "Event published !!";
     }

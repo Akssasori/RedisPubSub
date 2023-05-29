@@ -4,4 +4,7 @@ server:
 spring:
   application:
     name: brokerRedis
+  output:
+    ansi:
+      enabled: ALWAYS
 
